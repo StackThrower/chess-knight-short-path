@@ -1,15 +1,13 @@
 package com.chess.piece.service;
 
-import com.chess.Step;
+import com.chess.processor.Step;
 import com.chess.board.Cell;
 import com.chess.piece.Piece;
 
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
-public class TargetPiece extends Piece implements ServicePiece{
+public class TargetPiece extends Piece implements ServiceTargetPiece {
 
     private final static String SYMBOL = "@";
     public final static String PIECE_ID = "T";

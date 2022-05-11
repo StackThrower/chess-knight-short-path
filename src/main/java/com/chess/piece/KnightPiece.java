@@ -1,11 +1,9 @@
 package com.chess.piece;
 
-import com.chess.Step;
+import com.chess.processor.Step;
 import com.chess.board.Cell;
-import com.chess.board.exeption.CellNotFound;
 
 import java.util.*;
-import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 
 public class KnightPiece extends Piece {

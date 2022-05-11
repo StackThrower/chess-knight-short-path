@@ -1,7 +1,6 @@
-package com.chess;
+package com.chess.processor;
 
 import com.chess.board.BoardConfig;
-import com.chess.board.Cell;
 
 public class Step {
 

@@ -1,6 +1,6 @@
 package com.chess.piece.service;
 
-import com.chess.Step;
+import com.chess.processor.Step;
 import com.chess.board.Cell;
 import com.chess.piece.Piece;
 

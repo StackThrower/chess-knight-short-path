@@ -1,14 +1,13 @@
-package com.chess;
+package com.chess.processor;
 
 import com.chess.piece.Piece;
 
 import java.util.HashSet;
 import java.util.Set;
 
-public class StepCalculator {
+public class StepProcessor {
 
-    final static int DEFAULT_STEP_CALCULATOR_LEVEL = 3;
-
+    public final static int DEFAULT_STEP_CALCULATOR_LEVEL = 3;
 
     public static Set<Step> calculate(Piece piece, Step currentStep, int level) {
         Set<Step> steps = piece.availableMoves(currentStep);

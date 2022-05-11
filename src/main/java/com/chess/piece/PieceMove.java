@@ -1,7 +1,6 @@
 package com.chess.piece;
 
-import com.chess.Step;
-import com.chess.board.Cell;
+import com.chess.processor.Step;
 
 import java.util.Set;
 

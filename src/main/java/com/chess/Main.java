@@ -8,6 +8,8 @@ import com.chess.console.exception.IncorrectConsoleInput;
 import com.chess.piece.Piece;
 import com.chess.piece.registry.exception.IncorrectRegistrySettings;
 import com.chess.piece.service.TraceDebugPiece;
+import com.chess.processor.Step;
+import com.chess.processor.StepProcessor;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -32,7 +34,7 @@ public class Main {
             Set<Piece> tracePiece = new HashSet<>();
             for (Piece piece : pieces) {
                 Cell currentPosition = piece.getCurrentPosition();
-                Set<Step> traceSteps = StepCalculator.calculate(piece, new Step(currentPosition.getX(), currentPosition.getY(), 1), StepCalculator.DEFAULT_STEP_CALCULATOR_LEVEL);
+                Set<Step> traceSteps = StepProcessor.calculate(piece, new Step(currentPosition.getX(), currentPosition.getY(), 1), StepProcessor.DEFAULT_STEP_CALCULATOR_LEVEL);
                 for (Step traceStep : traceSteps) {
                     Piece newPiece = (new TraceDebugPiece(new Cell(traceStep.getX(), traceStep.getY()), traceStep.getLevel()));
                     tracePiece.add(newPiece);
