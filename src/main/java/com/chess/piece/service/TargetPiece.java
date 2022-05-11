@@ -1,10 +1,11 @@
-package com.chess.piece;
+package com.chess.piece.service;
 
 import com.chess.board.Cell;
+import com.chess.piece.Piece;
 
 import java.util.List;
 
-public class TargetPiece extends Piece{
+public class TargetPiece extends Piece {
 
     private final static String SYMBOL = "@";
     public final static String PIECE_ID = "T";

@@ -1,5 +1,7 @@
 package com.chess.board;
 
+import com.chess.board.exeption.CellLabelNotFoundException;
+
 import java.util.Arrays;
 
 public enum CellLabel {

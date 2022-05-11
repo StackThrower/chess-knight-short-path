@@ -1,9 +1,10 @@
 package com.chess.console;
 
 import com.chess.board.Cell;
-import com.chess.board.CellNotFound;
+import com.chess.board.exeption.CellNotFound;
+import com.chess.console.exception.IncorrectConsoleInput;
 import com.chess.piece.Piece;
-import com.chess.piece.registry.IncorrectRegistrySettings;
+import com.chess.piece.registry.exception.IncorrectRegistrySettings;
 import com.chess.piece.registry.PieceRegistry;
 
 import java.lang.reflect.Constructor;

@@ -1,4 +1,4 @@
-package com.chess.console;
+package com.chess.console.exception;
 
 public class IncorrectConsoleInput extends Exception{
     public IncorrectConsoleInput() {

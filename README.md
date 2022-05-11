@@ -10,3 +10,6 @@ Please note:
 - Output could also be kept simple: just print out the path in a textual format (i.e. A2 -> B5 etc)
 - Emphasis will be given on the algorithm, general code structure and how the program could be extended.
 - Unit tests would be highly appreciated
+
+### Test input
+Ka3 Tc5 BH7

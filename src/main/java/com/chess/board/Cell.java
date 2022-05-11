@@ -1,5 +1,8 @@
 package com.chess.board;
 
+import com.chess.board.exeption.CellLabelNotFoundException;
+import com.chess.board.exeption.CellNotFound;
+
 public class Cell {
 
     private CellLabel label;
@@ -35,6 +38,19 @@ public class Cell {
         } catch (CellLabelNotFoundException e) {
             throw new CellNotFound();
         }
+    }
+
+    public static boolean isValid(byte x, byte y) {
+        return x >= 0 && x < BoardConfig.MAX_X_CELLS &&
+                y >= 0 && y < BoardConfig.MAX_Y_CELLS;
+    }
+
+    public byte getX() {
+        return x;
+    }
+
+    public byte getY() {
+        return x;
     }
 
     @Override

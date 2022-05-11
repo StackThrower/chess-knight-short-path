@@ -3,7 +3,7 @@ package com.chess.piece.registry;
 import com.chess.piece.BishopPiece;
 import com.chess.piece.KnightPiece;
 import com.chess.piece.Piece;
-import com.chess.piece.TargetPiece;
+import com.chess.piece.service.TargetPiece;
 
 public enum PieceRegistry {
 

@@ -1,17 +1,15 @@
 package com.chess;
 
-import com.chess.board.CellNotFound;
+import com.chess.board.exeption.CellNotFound;
 import com.chess.console.ChessBoardPrinter;
 import com.chess.console.ConsoleInputReader;
-import com.chess.console.ConsolePieceReader;
-import com.chess.console.IncorrectConsoleInput;
+import com.chess.console.exception.IncorrectConsoleInput;
 import com.chess.piece.Piece;
-import com.chess.piece.registry.IncorrectRegistrySettings;
+import com.chess.piece.registry.exception.IncorrectRegistrySettings;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
 import java.util.List;
 
 public class Main {

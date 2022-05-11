@@ -2,9 +2,10 @@ package com.chess.piece;
 
 import com.chess.board.Cell;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class KnightPiece extends Piece{
+public class KnightPiece extends Piece {
 
     private final static String SYMBOL = "♞";
 
@@ -20,6 +21,6 @@ public class KnightPiece extends Piece{
 
     @Override
     public List<Cell> availableMoves(Cell currentPosition) {
-        return null;
+        return new ArrayList<>();
     }
 }

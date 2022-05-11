@@ -1,12 +1,9 @@
 package com.chess.console;
 
 import com.chess.board.Cell;
-import com.chess.board.CellNotFound;
-import com.chess.piece.BishopPiece;
-import com.chess.piece.KnightPiece;
+import com.chess.board.exeption.CellNotFound;
 import com.chess.piece.Piece;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ChessBoardPrinter {

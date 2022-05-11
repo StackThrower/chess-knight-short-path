@@ -1,7 +1,8 @@
 package com.chess.console;
 
+import com.chess.console.exception.IncorrectConsoleInput;
 import com.chess.piece.Piece;
-import com.chess.piece.registry.IncorrectRegistrySettings;
+import com.chess.piece.registry.exception.IncorrectRegistrySettings;
 
 import java.util.ArrayList;
 import java.util.List;
