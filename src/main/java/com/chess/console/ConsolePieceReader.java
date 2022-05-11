@@ -2,7 +2,6 @@ package com.chess.console;
 
 import com.chess.board.Cell;
 import com.chess.board.CellNotFound;
-import com.chess.piece.KnightPiece;
 import com.chess.piece.Piece;
 import com.chess.piece.registry.IncorrectRegistrySettings;
 import com.chess.piece.registry.PieceRegistry;
@@ -11,7 +10,7 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Optional;
 
-public class ConsolePiecePositionReader {
+public class ConsolePieceReader {
 
     /**
      * This method
@@ -20,7 +19,7 @@ public class ConsolePiecePositionReader {
      */
    public static Piece parseFromString(String input) throws IncorrectConsoleInput, IncorrectRegistrySettings {
 
-       Optional<String> optionalInput = Optional.of(input);
+       Optional<String> optionalInput = Optional.ofNullable(input);
        String params = optionalInput.orElseThrow(IncorrectConsoleInput::new);
 
        if(params.length() != 3) throw new IncorrectConsoleInput();
@@ -54,7 +53,7 @@ public class ConsolePiecePositionReader {
            }
        }
 
-       Optional<Piece> optionalPiece = Optional.of(piece);
+       Optional<Piece> optionalPiece = Optional.ofNullable(piece);
        return optionalPiece.orElseThrow(IncorrectConsoleInput::new);
    }
 

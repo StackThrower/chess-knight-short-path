@@ -1,27 +1,30 @@
 package com.chess;
 
-import com.chess.board.Cell;
 import com.chess.board.CellNotFound;
 import com.chess.console.ChessBoardPrinter;
-import com.chess.console.ConsolePiecePositionReader;
+import com.chess.console.ConsoleInputReader;
+import com.chess.console.ConsolePieceReader;
 import com.chess.console.IncorrectConsoleInput;
-import com.chess.piece.BishopPiece;
-import com.chess.piece.KnightPiece;
 import com.chess.piece.Piece;
 import com.chess.piece.registry.IncorrectRegistrySettings;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
 
-    public Main() {
+    private static final String EXIT_COMMAND = "quit";
 
-        List<Piece> pieces = new ArrayList<>();
+    List<Piece> pieces;
+    public Main() { }
+
+    public void process(String input) {
 
         try {
-            pieces.add(ConsolePiecePositionReader.parseFromString("Ka3"));
-            pieces.add(ConsolePiecePositionReader.parseFromString("Bc4"));
+            pieces = ConsoleInputReader.parseInput(input);
 
             ChessBoardPrinter chessBoardPrinter = new ChessBoardPrinter(pieces);
             chessBoardPrinter.build();
@@ -35,7 +38,29 @@ public class Main {
     }
 
     public static void main(String[] args) {
+
+        BufferedReader reader = new BufferedReader(
+                new InputStreamReader(System.in));
+
+        boolean quit = false;
+        String input;
+
         Main main = new Main();
+        do {
+            try {
+                input = reader.readLine();
+
+                if (EXIT_COMMAND.equalsIgnoreCase(input)) {
+                    quit = true;
+                } else {
+                    main.process(input);
+                }
+
+            } catch (IOException e) {
+                System.out.println("Incorrect console input");
+            }
+        } while (!quit);
+
     }
 
 }
