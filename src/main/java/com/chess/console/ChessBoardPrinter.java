@@ -4,13 +4,13 @@ import com.chess.board.Cell;
 import com.chess.board.exeption.CellNotFound;
 import com.chess.piece.Piece;
 
-import java.util.List;
+import java.util.Set;
 
 public class ChessBoardPrinter {
 
-    List<Piece> pieces;
+    Set<Piece> pieces;
 
-    public ChessBoardPrinter(List<Piece> pieces) {
+    public ChessBoardPrinter(Set<Piece> pieces) {
        this.pieces = pieces;
     }
 

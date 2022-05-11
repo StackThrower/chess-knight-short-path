@@ -4,15 +4,14 @@ import com.chess.console.exception.IncorrectConsoleInput;
 import com.chess.piece.Piece;
 import com.chess.piece.registry.exception.IncorrectRegistrySettings;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class ConsoleInputReader {
 
-    public static List<Piece> parseInput(String input) throws IncorrectConsoleInput, IncorrectRegistrySettings {
+    public static Set<Piece> parseInput(String input) throws IncorrectConsoleInput, IncorrectRegistrySettings {
 
-        List<Piece> pieces = new ArrayList<>();
+        Set<Piece> pieces = ConcurrentHashMap.newKeySet();
 
         Optional<String> optionalInput = Optional.ofNullable(input);
         String params = optionalInput.orElseThrow(()-> new IncorrectConsoleInput("Input is empty"));

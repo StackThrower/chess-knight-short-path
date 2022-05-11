@@ -4,7 +4,7 @@ import com.chess.board.Cell;
 
 public abstract class Piece implements PieceMove {
 
-    private Cell currentPosition;
+    protected Cell position;
 
     private String symbol;
 
@@ -12,14 +12,18 @@ public abstract class Piece implements PieceMove {
 
     public Piece() {}
 
-    public Piece(Cell currentPosition, String symbol, String pieceId) {
-        this.currentPosition = currentPosition;
+    public Piece(Cell position, String symbol, String pieceId) {
+        this.position = position;
         this.symbol = symbol;
         this.pieceId = pieceId;
     }
 
+    public Cell getCurrentPosition() {
+        return position;
+    }
+
     public boolean isCurrentPosition(Cell position) {
-        return currentPosition.equals(position);
+        return this.position.equals(position);
     }
 
     public String getSymbol() {

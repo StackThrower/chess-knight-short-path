@@ -50,7 +50,7 @@ public class Cell {
     }
 
     public byte getY() {
-        return x;
+        return y;
     }
 
     @Override

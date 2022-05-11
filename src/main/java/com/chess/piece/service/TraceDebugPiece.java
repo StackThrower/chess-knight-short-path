@@ -3,21 +3,19 @@ package com.chess.piece.service;
 import com.chess.board.Cell;
 import com.chess.piece.Piece;
 
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
-public class TargetPiece extends Piece {
+public class TraceDebugPiece extends Piece {
 
-    private final static String SYMBOL = "@";
-    public final static String PIECE_ID = "T";
+    private final static String SYMBOL = "D";
+    public final static String PIECE_ID = "D";
 
-    public TargetPiece() {
+    public TraceDebugPiece() {
         super();
     }
 
-    public TargetPiece(Cell currentPosition) {
+    public TraceDebugPiece(Cell currentPosition) {
         super(currentPosition, SYMBOL, PIECE_ID);
     }
 

@@ -12,4 +12,4 @@ Please note:
 - Unit tests would be highly appreciated
 
 ### Test input
-Ka3 Tc5 BH7
+Kd4 Tc5 BH7

@@ -3,9 +3,10 @@ package com.chess.piece;
 import com.chess.board.Cell;
 
 import java.util.List;
+import java.util.Set;
 
 public interface PieceMove {
 
-    List<Cell> availableMoves(Cell currentPosition);
+    Set<Cell> availableMoves(Cell currentPosition);
 
 }
