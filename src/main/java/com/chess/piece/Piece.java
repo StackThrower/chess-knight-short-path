@@ -4,7 +4,7 @@ import com.chess.board.Cell;
 
 public abstract class Piece implements PieceMove {
 
-    protected Cell position;
+    private Cell position;
 
     private String symbol;
 
@@ -33,4 +33,23 @@ public abstract class Piece implements PieceMove {
     public String getPieceId() {
         return pieceId;
     }
+
+    public Cell getPosition() {
+        return position;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        Piece piece = (Piece) object;
+
+        return this.position.equals(piece.getPosition());
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 53 * hash + position.getX() + position.getY();
+        return hash;
+    }
+
 }

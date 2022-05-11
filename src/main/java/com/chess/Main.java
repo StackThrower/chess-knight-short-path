@@ -12,7 +12,7 @@ import com.chess.piece.service.TraceDebugPiece;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.List;
+import java.util.HashSet;
 import java.util.Set;
 
 public class Main {
@@ -29,13 +29,16 @@ public class Main {
         try {
             pieces = ConsoleInputReader.parseInput(input);
 
+            Set<Piece> tracePiece = new HashSet<>();
             for (Piece piece : pieces) {
-                Set<Cell> traceCells = StepCalculator.calculate(piece, piece.getCurrentPosition(), 1);
-                for (Cell traceCell : traceCells) {
-                    pieces.add(new TraceDebugPiece(traceCell));
+                Cell currentPosition = piece.getCurrentPosition();
+                Set<Step> traceSteps = StepCalculator.calculate(piece, new Step(currentPosition.getX(), currentPosition.getY(), 1), StepCalculator.DEFAULT_STEP_CALCULATOR_LEVEL);
+                for (Step traceStep : traceSteps) {
+                    Piece newPiece = (new TraceDebugPiece(new Cell(traceStep.getX(), traceStep.getY()), traceStep.getLevel()));
+                    tracePiece.add(newPiece);
                 }
             }
-
+            pieces.addAll(tracePiece);
 
             ChessBoardPrinter chessBoardPrinter = new ChessBoardPrinter(pieces);
             chessBoardPrinter.build();

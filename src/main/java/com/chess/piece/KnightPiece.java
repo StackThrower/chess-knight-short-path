@@ -1,5 +1,6 @@
 package com.chess.piece;
 
+import com.chess.Step;
 import com.chess.board.Cell;
 import com.chess.board.exeption.CellNotFound;
 
@@ -75,11 +76,11 @@ public class KnightPiece extends Piece {
     }
 
     @Override
-    public Set<Cell> availableMoves(Cell position) {
-        final byte x = position.getX();
-        final byte y = position.getY();
+    public Set<Step> availableMoves(Step currentStep) {
+        final byte x = currentStep.getX();
+        final byte y = currentStep.getY();
 
-        Set<Cell> ret = ConcurrentHashMap.newKeySet(); // used recursively
+        Set<Step> ret = new HashSet<>();
 
         List<StepDirection> uniqueSteps = Arrays.stream(StepDirection.values())
                 .filter(StepDirection::isUnique).collect(Collectors.toList());
@@ -88,12 +89,8 @@ public class KnightPiece extends Piece {
             byte newX = (byte) (x + step.getX());
             byte newY = (byte) (y + step.getY());
 
-            if (Cell.isValid(newX, newY)) {
-                try {
-                    ret.add(new Cell(newX, newY));
-                } catch (CellNotFound e) {
-                    // TODO write to log e.getMessage()
-                }
+            if (Step.isValid(newX, newY)) {
+                ret.add(new Step(newX, newY, currentStep.getLevel()));
             }
         }
 

@@ -1,5 +1,6 @@
 package com.chess.piece;
 
+import com.chess.Step;
 import com.chess.board.Cell;
 
 import java.util.HashSet;
@@ -19,7 +20,7 @@ public class BishopPiece extends Piece {
     }
 
     @Override
-    public Set<Cell> availableMoves(Cell position) {
+    public Set<Step> availableMoves(Step currentStep) {
         return new HashSet<>();
     }
 

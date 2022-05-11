@@ -11,7 +11,7 @@ public class ConsoleInputReader {
 
     public static Set<Piece> parseInput(String input) throws IncorrectConsoleInput, IncorrectRegistrySettings {
 
-        Set<Piece> pieces = ConcurrentHashMap.newKeySet();
+        Set<Piece> pieces = new HashSet<>();
 
         Optional<String> optionalInput = Optional.ofNullable(input);
         String params = optionalInput.orElseThrow(()-> new IncorrectConsoleInput("Input is empty"));
