@@ -9,11 +9,20 @@ public class Step {
     private byte x;
     private byte y;
 
+    private Step parent;
+
+    public Step(byte x, byte y, int level, Step parent) {
+        this.level = level;
+        this.x = x;
+        this.y = y;
+        this.parent = parent;
+    }
 
     public Step(byte x, byte y, int level) {
         this.level = level;
         this.x = x;
         this.y = y;
+        this.parent = null;
     }
 
     public static boolean isValid(byte x, byte y) {
@@ -45,5 +54,9 @@ public class Step {
 
     public int getLevel() {
         return level;
+    }
+
+    public Step getParent() {
+        return parent;
     }
 }

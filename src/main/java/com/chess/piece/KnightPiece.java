@@ -88,7 +88,7 @@ public class KnightPiece extends Piece {
             byte newY = (byte) (y + step.getY());
 
             if (Step.isValid(newX, newY)) {
-                ret.add(new Step(newX, newY, currentStep.getLevel()));
+                ret.add(new Step(newX, newY, currentStep.getLevel(), currentStep));
             }
         }
 
