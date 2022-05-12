@@ -11,7 +11,7 @@ Please note:
 - Emphasis will be given on the algorithm, general code structure and how the program could be extended.
 - Unit tests would be highly appreciated
 
-### How to build program
+### How to build the program
 -  mvn package
 
 ### How to start the program
@@ -22,6 +22,7 @@ Please note:
 Kd4 Tc5 BH7
 
 ![Alt text](screen.png "Test screen")
+
 
 All transit steps are market with numbers.
 
@@ -34,3 +35,8 @@ All transit steps are market with numbers.
 ### How to quit the program
 Input command: 
 - quit
+
+### Summary
+- The code contains some FIXME comments and Suppressed annotations because of lack of time. These parts of the system can be improved in case with additional time.
+- For next version I'd propose to implement Dijkstra's algorithm for finding the shortest paths. 
+
