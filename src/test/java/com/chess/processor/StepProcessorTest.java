@@ -1,9 +1,18 @@
 package com.chess.processor;
 
 
+import com.chess.board.Cell;
+import com.chess.board.exeption.CellNotFound;
+import com.chess.piece.KnightPiece;
+import com.chess.piece.Piece;
 import com.chess.processor.exception.InvalidStepProcessorParams;
 import org.junit.jupiter.api.Test;
 
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class StepProcessorTest {
@@ -15,5 +24,26 @@ class StepProcessorTest {
 
     }
 
+    @Test
+    void findTargetCellByKnightInOneStep() throws CellNotFound, InvalidStepProcessorParams {
+
+        Piece piece = new KnightPiece(new Cell((byte) 0, (byte) 0));
+
+        Set<Cell> targetCells = new HashSet<>();
+        Cell targetCell = new Cell((byte) 2, (byte) 1);
+        targetCells.add(targetCell);
+
+        final int TOTAL_STEP_LEVELS = 1;
+
+        StepProcessor.calculate(piece, new Step(piece.getPosition().getX(), piece.getCurrentPosition().getY(),
+                StepProcessor.START_STEP_LEVEL_ID), TOTAL_STEP_LEVELS, targetCells);
+
+        List<Step> tails = StepProcessor.getSuccessStepsTails();
+        StepProcessor.clearSuccessStepsTails();
+
+        assertEquals(tails.size(), 1);
+
+        assertEquals(new Cell(tails.get(0).getX(),tails.get(0).getY()), targetCell);
+    }
 
 }
