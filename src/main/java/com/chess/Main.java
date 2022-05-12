@@ -49,50 +49,50 @@ public class Main {
     void printResults() {
         System.out.println("\n");
 
-        if(successfulPaths.size() > 0) {
+        if (successfulPaths.size() > 0) {
             System.out.println("SUCCESSFUL PATHS:");
         } else {
             System.out.println("NO SUCCESSFUL PATHS");
         }
 
-        for(String path: successfulPaths) {
+        for (String path : successfulPaths) {
             System.out.println(path);
         }
     }
 
-    private void processCalculatedData(Piece piece) throws CellNotFound {
+    private void processCalculatedData(Piece piece) {
         List<Step> successTails = StepProcessor.getSuccessStepsTails();
         for (Step traceStep : successTails) {
 
-            StringBuilder sb = new StringBuilder();
+            StringBuilder path = new StringBuilder();
 
             Step subTraceStep = traceStep;
             do {
-
-                Piece newPiece = new TraceDebugPiece(new Cell(subTraceStep.getX(),
-                        subTraceStep.getY()), subTraceStep.getLevel());
-
                 try {
-                    if (sb.length() > 0) {
-                        sb.insert(0, piece.getPieceId() +
+                    Piece newPiece = new TraceDebugPiece(new Cell(subTraceStep.getX(),
+                            subTraceStep.getY()), subTraceStep.getLevel());
+
+                    if (path.length() > 0) {
+                        path.insert(0, piece.getPieceId() +
                                 CellLabel.getByX(newPiece.getCurrentPosition().getX()).getLabel() +
                                 (newPiece.getCurrentPosition().getY() + 1) + " -> ");
                     } else {
-                        sb.insert(0, piece.getPieceId() +
+                        path.insert(0, piece.getPieceId() +
                                 CellLabel.getByX(newPiece.getCurrentPosition().getX()).getLabel() +
                                 (newPiece.getCurrentPosition().getY() + 1));
                     }
 
-                } catch (CellLabelNotFoundException e) {
+                    tracePieces.add(newPiece);
+
+                } catch (CellLabelNotFoundException | CellNotFound e) {
                     // TODO write to log
                 }
-                tracePieces.add(newPiece);
 
                 subTraceStep = subTraceStep.getParent();
 
             } while (subTraceStep != null);
 
-            successfulPaths.add(sb.toString());
+            successfulPaths.add(path.toString());
         }
 
         StepProcessor.clearSuccessStepsTails();
