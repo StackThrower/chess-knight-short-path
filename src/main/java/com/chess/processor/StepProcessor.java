@@ -13,7 +13,7 @@ public class StepProcessor {
 
     public final static int TOTAL_STEP_LEVELS = 3;
 
-    public final static int START_STEP_LEVEL_ID = 1;
+    public final static int START_STEP_LEVEL_ID = 0;
 
     private static final List<Step> successStepsTails = new ArrayList<>();
 
