@@ -38,5 +38,6 @@ Input command:
 
 ### Summary
 - The code contains some FIXME comments and Suppressed annotations because of lack of time. These parts of the system can be improved in case with additional time.
-- For next version I'd propose to implement Dijkstra's algorithm for finding the shortest paths. 
+- For next version I'd propose to implement Dijkstra's algorithm for finding the shortest paths.
+- Additionally it would be correct to cover all system with test coverage more than expected level. 
 
