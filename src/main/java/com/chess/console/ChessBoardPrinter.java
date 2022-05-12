@@ -14,7 +14,7 @@ public class ChessBoardPrinter {
        this.pieces = pieces;
     }
 
-    public void build() throws CellNotFound {
+    public String build() throws CellNotFound {
 
         StringBuilder sb = new StringBuilder();
 
@@ -29,7 +29,7 @@ public class ChessBoardPrinter {
             sb.append(buildBoardRowLine());
         }
 
-        System.out.print(sb);
+        return sb.toString();
     }
 
     String buildBoardLabels() {

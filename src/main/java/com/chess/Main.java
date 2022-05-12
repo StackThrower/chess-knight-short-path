@@ -25,91 +25,103 @@ import java.util.Set;
 public class Main {
 
     private static final String EXIT_COMMAND = "quit";
+    private static final int START_SEARCH_LEVEL_ID = 1;
 
     Set<Piece> pieces;
 
     List<String> successfulPaths = new ArrayList<>();
 
+    Set<Piece> tracePieces = new HashSet<>();
+
+    Set<Cell> targetCells = new HashSet<>();
+
     public Main() {
+    }
+
+    private void findAllTargets() {
+        for (Piece piece : pieces) {
+            if (piece instanceof ServiceTargetPiece) {
+                targetCells.add(piece.getCurrentPosition());
+            }
+        }
+    }
+
+    void printResults() {
+        System.out.println("\n");
+
+        if(successfulPaths.size() > 0) {
+            System.out.println("SUCCESSFUL PATHS:");
+        } else {
+            System.out.println("NO SUCCESSFUL PATHS");
+        }
+
+        for(String path: successfulPaths) {
+            System.out.println(path);
+        }
+    }
+
+    private void processCalculatedSteps(Piece piece) throws CellNotFound {
+        List<Step> successTails = StepProcessor.getSuccessStepsTails();
+        for (Step traceStep : successTails) {
+
+            StringBuilder sb = new StringBuilder();
+
+            Step subTraceStep = traceStep;
+            do {
+
+                Piece newPiece = new TraceDebugPiece(new Cell(subTraceStep.getX(),
+                        subTraceStep.getY()), subTraceStep.getLevel());
+
+                try {
+                    if (sb.length() > 0) {
+                        sb.insert(0, piece.getPieceId() +
+                                CellLabel.getByX(newPiece.getCurrentPosition().getX()).getLabel() +
+                                (newPiece.getCurrentPosition().getY() + 1) + " -> ");
+                    } else {
+                        sb.insert(0, piece.getPieceId() +
+                                CellLabel.getByX(newPiece.getCurrentPosition().getX()).getLabel() +
+                                (newPiece.getCurrentPosition().getY() + 1));
+                    }
+
+                } catch (CellLabelNotFoundException e) {
+                    // TODO write to log
+                }
+                tracePieces.add(newPiece);
+
+                subTraceStep = subTraceStep.getParent();
+
+            } while (subTraceStep != null);
+
+            successfulPaths.add(sb.toString());
+        }
+
+        StepProcessor.clearSuccessStepsTails();
     }
 
     public void process(String input) {
 
         try {
             pieces = ConsoleInputReader.parseInput(input);
+            tracePieces = new HashSet<>();
+            targetCells = new HashSet<>();
 
-            Set<Piece> tracePieces = new HashSet<>();
-            Set<Cell> targetCells = new HashSet<>();
-
-            // Find all targets
-            for (Piece piece : pieces) {
-                if (piece instanceof ServiceTargetPiece) {
-                    targetCells.add(piece.getCurrentPosition());
-                }
-            }
+            findAllTargets();
 
             for (Piece piece : pieces) {
                 Cell currentPosition = piece.getCurrentPosition();
 
 
-                Set<Step> debugSteps = StepProcessor.calculate(piece, new Step(currentPosition.getX(),
-                                currentPosition.getY(), 1),
+                StepProcessor.calculate(piece, new Step(currentPosition.getX(),
+                                currentPosition.getY(), Main.START_SEARCH_LEVEL_ID),
                         StepProcessor.DEFAULT_STEP_CALCULATOR_LEVEL, targetCells);
 
-                List<Step> successTails = StepProcessor.getSuccessStepsTails();
-                for (Step traceStep : successTails) {
 
-                    StringBuilder sb = new StringBuilder();
-
-                    Step subTraceStep = traceStep;
-                    do {
-
-                        Piece newPiece = new TraceDebugPiece(new Cell(subTraceStep.getX(),
-                                subTraceStep.getY()), subTraceStep.getLevel());
-
-                        try {
-                            if (sb.length() > 0) {
-                                sb.insert(0, piece.getPieceId() +
-                                        CellLabel.getByX(newPiece.getCurrentPosition().getX()).getLabel() +
-                                        (newPiece.getCurrentPosition().getY() + 1) + " -> ");
-                            } else {
-                                sb.insert(0, piece.getPieceId() +
-                                        CellLabel.getByX(newPiece.getCurrentPosition().getX()).getLabel() +
-                                        (newPiece.getCurrentPosition().getY() + 1));
-                            }
-
-                        } catch (CellLabelNotFoundException e) {
-                            // TODO write to log
-                        }
-                        tracePieces.add(newPiece);
-
-                        subTraceStep = subTraceStep.getParent();
-
-                    } while (subTraceStep != null);
-
-                    successfulPaths.add(sb.toString());
-                }
-
-                StepProcessor.clearSuccessStepsTails();
+                processCalculatedSteps(piece);
             }
             pieces.addAll(tracePieces);
 
-            ChessBoardPrinter chessBoardPrinter = new ChessBoardPrinter(pieces);
-            chessBoardPrinter.build();
-
-            System.out.println("\n");
-
-            if(successfulPaths.size() > 0) {
-                System.out.println("SUCCESSFUL PATHS:");
-            } else {
-                System.out.println("NO SUCCESSFUL PATHS");
-            }
-
-
-            for(String path: successfulPaths) {
-                System.out.println(path);
-            }
-
+            printBoard();
+            printResults();
 
         } catch (CellNotFound e) {
             System.out.println("Cell not found");
@@ -118,6 +130,12 @@ public class Main {
         } catch (IncorrectConsoleInput e) {
             System.out.println("Incorrect console input");
         }
+    }
+
+    private void printBoard() throws CellNotFound {
+        ChessBoardPrinter chessBoardPrinter = new ChessBoardPrinter(pieces);
+        System.out.println(chessBoardPrinter.build());
+
     }
 
     public static void main(String[] args) {
