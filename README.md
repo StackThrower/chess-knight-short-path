@@ -31,3 +31,6 @@ All transit steps are market with numbers.
 * B - (♗)Bishop
 * T - (@)Target
 
+### How to quit the program
+Input command: 
+- quit
