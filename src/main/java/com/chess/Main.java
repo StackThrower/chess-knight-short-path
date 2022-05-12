@@ -25,7 +25,6 @@ import java.util.Set;
 public class Main {
 
     private static final String EXIT_COMMAND = "quit";
-    private static final int START_SEARCH_LEVEL_ID = 1;
 
     Set<Piece> pieces;
 
@@ -58,6 +57,7 @@ public class Main {
         for (String path : successfulPaths) {
             System.out.println(path);
         }
+        successfulPaths.clear();
     }
 
     private void processCalculatedData(Piece piece) {
@@ -112,8 +112,8 @@ public class Main {
 
 
                 StepProcessor.calculate(piece, new Step(currentPosition.getX(),
-                                currentPosition.getY(), Main.START_SEARCH_LEVEL_ID),
-                        StepProcessor.DEFAULT_STEP_CALCULATOR_LEVEL, targetCells);
+                                currentPosition.getY(), StepProcessor.START_STEP_LEVEL_ID),
+                        StepProcessor.TOTAL_STEP_LEVELS, targetCells);
 
 
                 processCalculatedData(piece);

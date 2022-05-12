@@ -11,7 +11,9 @@ import java.util.stream.Collectors;
 
 public class StepProcessor {
 
-    public final static int DEFAULT_STEP_CALCULATOR_LEVEL = 3;
+    public final static int TOTAL_STEP_LEVELS = 3;
+
+    public final static int START_STEP_LEVEL_ID = 1;
 
     private static final List<Step> successStepsTails = new ArrayList<>();
 
