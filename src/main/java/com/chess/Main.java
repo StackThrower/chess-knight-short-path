@@ -17,10 +17,8 @@ import com.chess.processor.StepProcessor;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class Main {
 
@@ -53,8 +51,10 @@ public class Main {
         } else {
             System.out.println("NO SUCCESSFUL PATHS");
         }
-
-        for (String path : successfulPaths) {
+        List<String> sortedList = successfulPaths.stream()
+                .sorted(Comparator.comparingInt(String::length))
+                .collect(Collectors.toList());
+        for (String path : sortedList) {
             System.out.println(path);
         }
         successfulPaths.clear();
@@ -72,15 +72,10 @@ public class Main {
                     Piece newPiece = new TraceDebugPiece(new Cell(subTraceStep.getX(),
                             subTraceStep.getY()), subTraceStep.getLevel());
 
-                    if (path.length() > 0) {
-                        path.insert(0, piece.getPieceId() +
-                                CellLabel.getByX(newPiece.getCurrentPosition().getX()).getLabel() +
-                                (newPiece.getCurrentPosition().getY() + 1) + " -> ");
-                    } else {
-                        path.insert(0, piece.getPieceId() +
-                                CellLabel.getByX(newPiece.getCurrentPosition().getX()).getLabel() +
-                                (newPiece.getCurrentPosition().getY() + 1));
-                    }
+                    String pathDelimiter = path.length() > 0 ? " -> " : "";
+                    path.insert(0, piece.getPieceId() +
+                            CellLabel.getByX(newPiece.getCurrentPosition().getX()).getLabel() +
+                            (newPiece.getCurrentPosition().getY() + 1) + pathDelimiter);
 
                     tracePieces.add(newPiece);
 
