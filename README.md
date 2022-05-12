@@ -11,5 +11,18 @@ Please note:
 - Emphasis will be given on the algorithm, general code structure and how the program could be extended.
 - Unit tests would be highly appreciated
 
+### How to start the program
+- java -cp chess-khnight-short-path-1.0.1.jar com.chess.Main
+
 ### Test input
 Kd4 Tc5 BH7
+
+### Tests
+All transit steps are market with numbers.
+![Alt text](screen1.png "Test screen")
+
+### Pieces
+* K - (♞)Knight
+* B - (♗)Bishop
+* T - (@)Target
+
