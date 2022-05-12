@@ -13,6 +13,7 @@ import com.chess.piece.service.ServiceTargetPiece;
 import com.chess.piece.service.TraceDebugPiece;
 import com.chess.processor.Step;
 import com.chess.processor.StepProcessor;
+import com.chess.processor.exception.InvalidStepProcessorParams;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -124,6 +125,8 @@ public class Main {
             System.out.println("Internal registry error");
         } catch (IncorrectConsoleInput e) {
             System.out.println("Incorrect console input");
+        } catch (InvalidStepProcessorParams e) {
+            System.out.println("Invalid params for step processor");
         }
     }
 

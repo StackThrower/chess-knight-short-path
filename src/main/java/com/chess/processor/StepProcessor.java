@@ -2,6 +2,7 @@ package com.chess.processor;
 
 import com.chess.board.Cell;
 import com.chess.piece.Piece;
+import com.chess.processor.exception.InvalidStepProcessorParams;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -17,7 +18,14 @@ public class StepProcessor {
 
     private static final List<Step> successStepsTails = new ArrayList<>();
 
-    public static Set<Step> calculate(Piece piece, Step currentStep, int level, Set<Cell> targetCells) {
+    private static void validateParams(Piece piece, Step currentStep, Set<Cell> targetCells) throws InvalidStepProcessorParams {
+        if (piece == null || currentStep == null || targetCells == null)
+            throw new InvalidStepProcessorParams();
+    }
+
+    public static Set<Step> calculate(Piece piece, Step currentStep, int level, Set<Cell> targetCells) throws InvalidStepProcessorParams {
+        validateParams(piece, currentStep, targetCells);
+
         Set<Step> steps = piece.availableMoves(currentStep);
 
         findSuccessfulSteps(steps, targetCells);
