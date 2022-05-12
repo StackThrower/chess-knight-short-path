@@ -21,7 +21,7 @@ Please note:
 ### Test input
 Kd4 Tc5 BH7
 
-![Alt text](screen1.png "Test screen")
+![Alt text](screen.png "Test screen")
 
 All transit steps are market with numbers.
 
