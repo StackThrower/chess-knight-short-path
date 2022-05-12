@@ -60,7 +60,7 @@ public class Main {
         }
     }
 
-    private void processCalculatedSteps(Piece piece) throws CellNotFound {
+    private void processCalculatedData(Piece piece) throws CellNotFound {
         List<Step> successTails = StepProcessor.getSuccessStepsTails();
         for (Step traceStep : successTails) {
 
@@ -116,7 +116,7 @@ public class Main {
                         StepProcessor.DEFAULT_STEP_CALCULATOR_LEVEL, targetCells);
 
 
-                processCalculatedSteps(piece);
+                processCalculatedData(piece);
             }
             pieces.addAll(tracePieces);
 
