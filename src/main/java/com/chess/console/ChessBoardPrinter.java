@@ -11,7 +11,7 @@ public class ChessBoardPrinter {
     Set<Piece> pieces;
 
     public ChessBoardPrinter(Set<Piece> pieces) {
-       this.pieces = pieces;
+        this.pieces = pieces;
     }
 
     public String build() throws CellNotFound {

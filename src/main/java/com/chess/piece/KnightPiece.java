@@ -1,9 +1,12 @@
 package com.chess.piece;
 
-import com.chess.processor.Step;
 import com.chess.board.Cell;
+import com.chess.processor.Step;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class KnightPiece extends Piece {

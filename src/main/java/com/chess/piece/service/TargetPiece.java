@@ -1,8 +1,8 @@
 package com.chess.piece.service;
 
-import com.chess.processor.Step;
 import com.chess.board.Cell;
 import com.chess.piece.Piece;
+import com.chess.processor.Step;
 
 import java.util.HashSet;
 import java.util.Set;

@@ -4,8 +4,9 @@ import com.chess.console.exception.IncorrectConsoleInput;
 import com.chess.piece.Piece;
 import com.chess.piece.registry.exception.IncorrectRegistrySettings;
 
-import java.util.*;
-import java.util.concurrent.ConcurrentHashMap;
+import java.util.HashSet;
+import java.util.Optional;
+import java.util.Set;
 
 public class ConsoleInputReader {
 
@@ -14,13 +15,13 @@ public class ConsoleInputReader {
         Set<Piece> pieces = new HashSet<>();
 
         Optional<String> optionalInput = Optional.ofNullable(input);
-        String params = optionalInput.orElseThrow(()-> new IncorrectConsoleInput("Input is empty"));
+        String params = optionalInput.orElseThrow(() -> new IncorrectConsoleInput("Input is empty"));
 
         String[] paramsArr = params.split(" ");
 
         if (paramsArr.length < 2) throw new IncorrectConsoleInput("You should set at least two params");
 
-        for(String param : paramsArr) {
+        for (String param : paramsArr) {
             pieces.add(ConsolePieceReader.parseFromString(param));
         }
 

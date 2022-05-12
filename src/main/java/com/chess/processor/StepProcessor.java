@@ -39,13 +39,13 @@ public class StepProcessor {
     }
 
 
-    private static void findSuccessfulSteps(Set<Step> steps, Set<Cell> targetCells){
+    private static void findSuccessfulSteps(Set<Step> steps, Set<Cell> targetCells) {
         for (Cell cell : targetCells) {
             List<Step> successfulSteps = steps.stream()
                     .filter(step -> step.equals(new Step(cell.getX(), cell.getY(), 0)))
                     .collect(Collectors.toList());
 
-            if(successfulSteps.size() > 0) {
+            if (successfulSteps.size() > 0) {
                 successStepsTails.addAll(successfulSteps);
             }
         }

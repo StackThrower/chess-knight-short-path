@@ -6,14 +6,14 @@ import java.util.Arrays;
 
 public enum CellLabel {
 
-    A("A", (byte)0),
-    B("B", (byte)1),
-    C("C", (byte)2),
-    D("D", (byte)3),
-    E("E", (byte)4),
-    F("F", (byte)5),
-    G("G", (byte)6),
-    H("H", (byte)7);
+    A("A", (byte) 0),
+    B("B", (byte) 1),
+    C("C", (byte) 2),
+    D("D", (byte) 3),
+    E("E", (byte) 4),
+    F("F", (byte) 5),
+    G("G", (byte) 6),
+    H("H", (byte) 7);
 
     private final String label;
     private final byte x;

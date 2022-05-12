@@ -10,7 +10,8 @@ public abstract class Piece implements PieceMove {
 
     private String pieceId;
 
-    public Piece() {}
+    public Piece() {
+    }
 
     public Piece(Cell position, String symbol, String pieceId) {
         this.position = position;

@@ -17,6 +17,8 @@ public enum PieceRegistry {
 
     private Class<Piece> piece;
 
+    // FIXME this should be fixed
+    @SuppressWarnings("rawtypes")
     PieceRegistry(Class piece) {
         this.piece = piece;
     }
