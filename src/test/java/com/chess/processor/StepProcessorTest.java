@@ -30,7 +30,7 @@ class StepProcessorTest {
         Piece piece = new KnightPiece(new Cell((byte) 0, (byte) 0));
 
         Set<Cell> targetCells = new HashSet<>();
-        Cell targetCell = new Cell((byte) 2, (byte) 1);
+        Cell targetCell = new Cell((byte) 1, (byte) 2);
         targetCells.add(targetCell);
 
         final int TOTAL_STEP_LEVELS = 1;
@@ -39,11 +39,13 @@ class StepProcessorTest {
                 StepProcessor.START_STEP_LEVEL_ID), TOTAL_STEP_LEVELS, targetCells);
 
         List<Step> tails = StepProcessor.getSuccessStepsTails();
-        StepProcessor.clearSuccessStepsTails();
+
 
         assertEquals(tails.size(), 1);
 
         assertEquals(new Cell(tails.get(0).getX(),tails.get(0).getY()), targetCell);
+
+        StepProcessor.clearSuccessStepsTails();
     }
 
 }
